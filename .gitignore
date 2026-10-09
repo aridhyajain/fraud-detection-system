@@ -1,0 +1,26 @@
+# Environment variables
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Virtual environment
+backend/venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# ML model files
+backend/saved_models/
+
+# Node modules
+frontend/node_modules/
+
+# Dataset
+backend/data/dataset.csv
+
+# OS files
+.DS_Store
+# Frontend build output
+frontend/dist/

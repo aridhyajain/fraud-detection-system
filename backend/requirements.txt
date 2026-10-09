@@ -1,0 +1,19 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy==2.0.35
+psycopg2-binary==2.9.10
+python-dotenv==1.0.1
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+pydantic[email]==2.9.2
+pydantic-settings==2.5.2
+alembic==1.13.3
+python-multipart==0.0.12
+
+# ── ML / Data Science ──────────────────────────
+numpy>=2.1.0
+pandas>=2.2.0
+scikit-learn>=1.6.0
+xgboost>=2.1.0
+imbalanced-learn>=0.13.0
+joblib>=1.4.0
