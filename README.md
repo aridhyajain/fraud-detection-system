@@ -13,7 +13,7 @@ A comprehensive UPI / bank transfer fraud detection system featuring a robust ML
 ## Features
 
 ### Fraud Detection Pipeline
-* **Rule-based Pre-filter:** Filters out obvious safe transactions before hitting the ML models.
+* **Rule-based Pre-filter:** Flags obvious fraud (e.g. large amount from a new account, unusual hour, many transactions in a short window) and assigns High risk directly, skipping the ML model.
 * **ML Ensemble:** XGBoost + Random Forest ensemble with SMOTE handling class imbalance.
 * **Risk Scoring:** 
   * **Low (0-40):** Approved automatically.
@@ -35,7 +35,7 @@ A comprehensive UPI / bank transfer fraud detection system featuring a robust ML
   * Review "Pending OTP" verification section.
   * Review "Flagged Transactions (Action Required)" section.
   * Actions: Confirm fraud, mark false positive, manually clear OTP.
-  * Add User: Role-based creation via modal.
+  * Add User: Create new user accounts via modal.
   * View All Users: Dedicated page with status indicators (Active/Frozen).
 * **2FA Login:** Username + Password + Email OTP (via Gmail SMTP).
 
@@ -49,6 +49,7 @@ fraud-detection/
 │   │   ├── auth.py
 │   │   └── transactions.py
 │   ├── data/
+│   │   └── generate_dataset.py
 │   ├── models/
 │   │   ├── db_models.py
 │   │   └── ml_model.py
@@ -123,7 +124,19 @@ fraud-detection/
    ```bash
    python seed.py
    ```
-6. Start the FastAPI server:
+6. Generate the synthetic training dataset (saves to `data/dataset.csv`):
+   ```bash
+   python data/generate_dataset.py
+   ```
+7. Train the ML ensemble model (saves to `saved_models/`):
+   ```bash
+   python train_model.py
+   ```
+   Optionally, override defaults:
+   ```bash
+   python train_model.py --csv data/dataset.csv --smote-ratio 0.3 --test-size 0.2
+   ```
+8. Start the FastAPI server:
    ```bash
    uvicorn main:app --reload
    ```
@@ -143,4 +156,4 @@ fraud-detection/
    ```
 
 ## License
-Private — internal use only.
+Academic project. All rights reserved.
